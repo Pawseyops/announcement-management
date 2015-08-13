@@ -20,9 +20,15 @@ class IndexView(generic.ListView):
 # Detailed view of a particular announcement
 class DetailView(generic.DetailView):
     model = Announcement
+    queryset = Announcement.objects.exclude(inactive=True)
     context_object_name = 'announcementObject'
     template_name = 'announce/detail.html'
-    #TODO: restrict public access to inactive announcements. 
+    # Restrict access to view inactive announcements to logged in users only.
+    def get_queryset(self):
+        if self.request.user.is_authenticated():
+            return self.model._default_manager.all()
+        else:
+            return self.queryset.all()
 
 # Announcement creation form (urls.py restricts this to logged in users)
 class AnnouncementCreate(CreateView):
