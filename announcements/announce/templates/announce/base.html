@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'announce/css/pawsey.css' %}" />
+    <title>{% block title %}Pawsey Announcement Management System{% endblock %}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="Robots" content="noindex, nofollow" >
+    <meta name="GOOGLEBOT" content="noarchive" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <img src="{% static 'announce/images/PawseyLogoHorizontal.png' %}" alt="Pawsey Supercomputing Centre">
+        <h2>Announcements</h2>
+        
+        <hr>
+        {% block content %}{% endblock %}
+
+        <hr>
+        <small>Copyright Pawsey Supercomputing Centre 2015 <a href="http://www.pawsey.org.au/">www.pawsey.org.au (warning! website colour scheme may cause seizures)</a></small>
+    </div>
+
+</body>
+</html>

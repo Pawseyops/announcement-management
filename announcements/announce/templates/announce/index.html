@@ -1,0 +1,25 @@
+{% extends "announce/base.html" %}
+
+{% block title %}Pawsey Announcement Management System{% endblock %}
+
+{% block content %}
+{% if latest_announcements_list %}
+
+<div class="row">
+  <div class="col-lg-6">
+    <h4>Most Recent Pawsey Supercomputing Centre Announcements</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+   <ul>
+   {% for announcement in latest_announcements_list %}
+        <li>Ref {{ announcement.reference }} {{ announcement.dateTimeCreated }} - <a href="{% url 'announce:detail' announcement.id %}">{{ announcement.subject }}</a></li>
+   {% endfor %}
+    </ul>
+  </div>
+</div>
+{% else %}
+    <p>No recent announcements found</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "announce/base.html" %}
+
+{% block title %}Pawsey Announcement Management System{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-lg-6">
+    <h4>Announcement Detail for {{ announcementObject.reference }}</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+
+{% if announcementObject %}
+        <table border="2">
+        <tr>
+        <td>Reference: {{ announcementObject.reference }} </td><td>Date/Time Created: {{ announcementObject.dateTimeCreated }} </td>
+        </tr><tr>
+        <td>{{ announcementObject.subject }}</td><td>Service(s): {{ announcementObject.get_servicenames }} </td>
+        </tr><tr>
+        <td>Owner(s): {{ announcementObject.get_serviceowners }} </td> <td>Location(s): {{ announcementObject.get_servicelocations }} </td>
+        </tr><tr>
+        <td style="height:200px;" colspan="2">{{ announcementObject.body }}</td>
+        </table>
+{% else %}
+    <p>No recent announcements found</p>
+{% endif %}
+  </div>
+</div>
+{% endblock %}
