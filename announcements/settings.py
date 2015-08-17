@@ -128,7 +128,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = "%s/%s"%(MYURL,'static/')
-STATIC_ROOT = "%s/%s"%(BASEDIR, 'static/')
+STATIC_ROOT = "%s/%s"%(BASE_DIR, 'static/')
 
 # Mail settings
 SERVER_EMAIL = 'pawseyannouncements@example.com'
