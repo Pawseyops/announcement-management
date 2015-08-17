@@ -25,12 +25,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'v7u3l3pd5hhh3k=l=gtbrp6h5yo61_^!7)_8!8%%y18ta_io_5'
 
-MYURL = os.environ['SCRIPT_NAME']
+MYURL = os.environ.get('SCRIPT_NAME','')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-print os.environ
 
 ALLOWED_HOSTS = []
 
