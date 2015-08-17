@@ -7,25 +7,19 @@ For more information on this file, see
 https://docs.djangoproject.com/en/1.8/howto/deployment/wsgi/
 """
 
+from django.core.handlers.wsgi import WSGIHandler
 import os
-
-# Path hackery to make sure all the project's paths appear
-# before the system paths in sys.path. addsitedir always
-# appends unfortunately.
-import site
-import sys
+import django
 
 webapp_root = os.path.dirname(os.path.abspath(__file__))
-oldpath = sys.path[1:]
-sys.path = sys.path[:1]
-site.addsitedir("~/pawseyconfig")
-site.addsitedir(os.path.join(webapp_root,"../virtualenv/lib/python2.7/site-packages"))
-site.addsitedir(webapp_root)
-sys.path.extend(oldpath)
 
+class WSGIEnvironment(WSGIHandler):
 
-from django.core.wsgi import get_wsgi_application
+    def __call__(self, environ, start_response):
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "announcements.settings")
+        os.environ['SCRIPT_NAME'] = environ['SCRIPT_NAME']
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "announcements.settings")
+        django.setup()
+        return super(WSGIEnvironment, self).__call__(environ, start_response)
 
-application = get_wsgi_application()
+application = WSGIEnvironment()

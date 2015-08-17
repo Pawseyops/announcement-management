@@ -14,9 +14,10 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 import ldap
 from django_auth_ldap.config import LDAPSearch, GroupOfNamesType
+from django.core.handlers.wsgi import get_script_name
+from django.core.urlresolvers import get_script_prefix
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -24,8 +25,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'v7u3l3pd5hhh3k=l=gtbrp6h5yo61_^!7)_8!8%%y18ta_io_5'
 
+MYURL = os.environ['SCRIPT_NAME']
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+print os.environ
 
 ALLOWED_HOSTS = []
 
@@ -124,7 +129,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = "%s/%s"%(MYURL,'static/')
+STATIC_ROOT = "%s/%s"%(BASEDIR, 'static/')
 
 # Mail settings
 SERVER_EMAIL = 'pawseyannouncements@example.com'
@@ -142,3 +148,4 @@ try:
     print 'OK'
 except Exception, e:
     print 'Fail'
+
