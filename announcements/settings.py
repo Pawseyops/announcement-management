@@ -137,6 +137,10 @@ MANAGERS = [('Manager','managers@example.com')]
 EMAIL_HOST = 'localhost'
 EMAIL_SUBJECT_PREFIX = '[PawseyAnnouncements] '
 
+# Security settings
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
 # Try to find a custom settings file (rather than changing this one)
 
 try:

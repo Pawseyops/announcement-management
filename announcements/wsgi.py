@@ -19,6 +19,7 @@ class WSGIEnvironment(WSGIHandler):
 
         os.environ['SCRIPT_NAME'] = environ['SCRIPT_NAME']
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", "announcements.settings")
+        os.environ['HTTPS'] = "on"
         django.setup()
         return super(WSGIEnvironment, self).__call__(environ, start_response)
 
