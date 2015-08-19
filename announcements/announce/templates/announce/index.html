@@ -12,9 +12,16 @@
 </div>
 <div class="row">
   <div class="col-lg-6">
+   {% if perms.announce %}
+   <a href="{% url 'announce:announcement_add' %}">Create New Announcement</a>
+   {% endif %}
    <ul>
    {% for announcement in latest_announcements_list %}
-        <li>Ref {{ announcement.reference }} {{ announcement.dateTimeCreated }} - <a href="{% url 'announce:detail' announcement.id %}">{{ announcement.subject }}</a></li>
+        <li>Ref {{ announcement.reference }} {{ announcement.dateTimeCreated }} - <a href="{% url 'announce:detail' announcement.id %}">{{ announcement.subject }}</a>
+        {% if perms.announce %}
+         - <a href="{% url 'announce:announcement_update' announcement.id %}">Edit</a>
+        {% endif %}
+        </li>
    {% endfor %}
     </ul>
   </div>

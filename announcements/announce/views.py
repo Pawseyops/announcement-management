@@ -14,8 +14,12 @@ class IndexView(generic.ListView):
     context_object_name = 'latest_announcements_list'
 
     def get_queryset(self):
-        """return the last 5 active Announcements"""
-        return Announcement.objects.exclude(inactive=True).order_by('-dateTimeCreated')[:5]
+        """return the last 10 active Announcements"""
+        """Miss out inactive Announcements if user is not logged in"""
+        if self.request.user.is_authenticated():
+            return Announcement.objects.order_by('-dateTimeCreated')[:10]
+        else:
+            return Announcement.objects.exclude(inactive=True).order_by('-dateTimeCreated')[:10]
 
 # Detailed view of a particular announcement
 class DetailView(generic.DetailView):

@@ -17,6 +17,9 @@
         
         <hr>
         {% block content %}{% endblock %}
+        {% if perms.announce %}
+                 <a href="{% url 'admin:logout' %}">Logout</a>
+        {% endif %}
 
         <hr>
         <small>Copyright Pawsey Supercomputing Centre 2015 <a href="http://www.pawsey.org.au/">www.pawsey.org.au</a></small>
