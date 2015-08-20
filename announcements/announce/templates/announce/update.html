@@ -5,15 +5,18 @@
 {% block content %}
 <div class="row">
   <div class="col-lg-6">
-    <h4>Announcement Creation</h4>
+    <h4>Announcement Editing</h4>
   </div>
 </div>
 <div class="row">
   <div class="col-lg-6">
-  <form action="/your-name/" method="post">
+  <table>
+  <form action="" method="post">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Submit" />
+    <tr><td><input type="submit" value="Save Draft" name="_draft" /></td><td align="right"><input type="submit" value="Send Email" name="_send" /></td></tr>
+
+    </table>
   </form>
   </div>
 </div>

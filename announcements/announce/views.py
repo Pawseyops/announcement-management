@@ -40,9 +40,38 @@ class AnnouncementCreate(CreateView):
     fields = ['subject', 'reference', 'service', 'template', 'body']
     template_name = 'announce/add.html'
 
+    def form_valid(self, form):
+        # If we pressed the send email button then we should send an email
+        # Also mark the announcement as inactive if it's a draft
+        self.object = form.save()
+        print self.object
+        if '_send' in self.request.POST:
+            # send email
+            self.object.send_email()
+        elif '_draft' in self.request.POST:
+            # mark as inactive
+            self.object.inactive=True
+
+        return super(AnnouncementCreate, self).form_valid(form)
+
 # Announcement updating form (urls.py restricts this to logged in users)
 class AnnouncementUpdate(UpdateView):
     model = Announcement
     fields = ['subject', 'reference', 'service', 'template', 'body']
     template_name = 'announce/update.html'
 
+    def form_valid(self, form):
+        # If we pressed the send email button then we should send an email
+        # Also mark the announcement as inactive if it's a draft
+        self.object = form.save()
+        print self.object
+        if '_send' in self.request.POST:
+            # send email
+            self.object.send_email()
+        # Commented out. We'll leave withdrawing announcements for the admin
+        # app for the moment
+        #elif '_draft' in self.request.POST:
+        #    # mark as inactive
+        #    self.object.inactive=True
+
+        return super(AnnouncementUpdate, self).form_valid(form)

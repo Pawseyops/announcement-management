@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from django.template import engines, Context
 from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
+#from announcements import urls
 
 # Models for Pawsey Supercomputing Centre Announcement System.
 
@@ -75,7 +76,7 @@ class Announcement(models.Model):
         return self.subject
 
     def get_absolute_url(self):
-        return reverse('announcement_update', kwargs={'pk': self.pk})
+        return reverse('announce:detail', kwargs={'pk': self.pk})
 
     # Generate list of comma seperated, non repeating, owner for services listed in the announcement.
     def get_serviceowners(self):

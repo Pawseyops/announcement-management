@@ -11,10 +11,10 @@
 <div class="row">
   <div class="col-lg-6">
   <table>
-  <form action="/announce/add/" method="post">
+  <form action="" method="post">
     {% csrf_token %}
     {{ form }}
-    <tr><td align="right" colspan="2"><input type="submit" value="Submit" /></td></tr>
+    <tr><td><input type="submit" value="Save Draft" name="_draft" /></td><td align="right"><input type="submit" value="Send Email" name="_send" /></td></tr>
 
     </table>
   </form>
