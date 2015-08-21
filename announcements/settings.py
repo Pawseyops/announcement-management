@@ -106,8 +106,8 @@ AUTH_LDAP_USER_ATTR_MAP = {
     "email": "mail"
 }
 
-LOGIN_URL = "%s/%s"%(MYURL,'/admin/login')
-
+LOGIN_URL = "%s/%s"%(MYURL,'login/')
+LOGIN_REDIRECT_URL = "%s/%s"%(MYURL,'announce/')
 
 
 # Internationalization

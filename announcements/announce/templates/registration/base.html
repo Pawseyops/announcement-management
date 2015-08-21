@@ -20,9 +20,6 @@
         {% if perms.announce %}
                  <a href="{% url 'logout' %}">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;  
         {% endif %}
-        {% if request.resolver_match.url_name != 'index' %}
-        <a href="{% url 'announce:index' %}">Back to Index</a>
-        {% endif %}
         <hr>
         <small>Copyright Pawsey Supercomputing Centre 2015 <a href="http://www.pawsey.org.au/">www.pawsey.org.au</a></small>
     </div>
