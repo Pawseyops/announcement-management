@@ -25,7 +25,7 @@
 {% else %}
     <p>No recent announcements found</p>
 {% endif %}
-     <div align="right"><a href="{{request.META.HTTP_REFERER}}">Go back</a></div>
+     <div align="right"><a href="{% url 'announce:index' %}">Go back</a></div>
   </div>
 </div>
 {% endblock %}
